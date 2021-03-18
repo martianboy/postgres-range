@@ -6,6 +6,8 @@ export const RANGE_UB_INF = (1 << 5)
 
 export class Range<T> {
   constructor(lower: T | null, upper: T | null, mask: number);
+  lower: T | null;
+  upper: T | null;
   hasMask (flag): boolean;
   isEmpty (): boolean;
   isBounded (): boolean;

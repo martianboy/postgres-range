@@ -32,6 +32,8 @@ range.parse('empty').isEmpty()
 
 range.serialize(new range.Range(0, 5))
 // => '(0,5)'
+range.serialize(new range.Range(0, 5, range.RANGE_LB_INC | RANGE_UB_INC))
+// => '[0,5]'
 ```
 
 ## API
