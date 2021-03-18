@@ -1,6 +1,6 @@
 {
   "name": "postgres-range",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Range data type parser and serializer for PostgreSQL",
   "main": "index.js",
   "repository": "https://github.com/martianboy/postgres-range",
