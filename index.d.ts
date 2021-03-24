@@ -16,11 +16,11 @@ export class Range<T> {
   hasLowerBound (): boolean;
   hasUpperBound (): boolean;
 
-  containsPoint (point: T, transform: (value: string) => T): boolean;
-  containsRange (range: Range<T>, transform: (value: string) => T): boolean;
+  containsPoint (point: T): boolean;
+  containsRange (range: Range<T>): boolean;
 }
 
-export function parse(input: string): string;
+export function parse(input: string): Range<string>;
 export function parse<T>(source: string, transform: (value: string) => T): Range<T>;
 export function serialize<T>(range: Range<T>): string;
 export function serialize<T>(range: Range<T>, format: (value: T) => string): string;

@@ -47,34 +47,27 @@ class Range {
     return !this.hasMask(RANGE_UB_INF)
   }
 
-  containsPoint (point, transform = x => x) {
+  containsPoint (point) {
     const l = this.hasLowerBound()
     const u = this.hasUpperBound()
 
-    const lower = l
-      ? transform(this.lower)
-      : null
-    const upper = u
-      ? transform(this.upper)
-      : null
-
     if (l && u) {
       const inLower = this.hasMask(RANGE_LB_INC)
-        ? lower.compareTo(point) <= 0
-        : lower.compareTo(point) < 0
+        ? this.lower.compareTo(point) <= 0
+        : this.lower.compareTo(point) < 0
       const inUpper = this.hasMask(RANGE_UB_INC)
-        ? upper.compareTo(point) >= 0
-        : upper.compareTo(point) > 0
+        ? this.upper.compareTo(point) >= 0
+        : this.upper.compareTo(point) > 0
 
       return inLower && inUpper
     } else if (l) {
       return this.hasMask(RANGE_LB_INC)
-        ? lower.compareTo(point) <= 0
-        : lower.compareTo(point) < 0
+        ? this.lower.compareTo(point) <= 0
+        : this.lower.compareTo(point) < 0
     } else if (u) {
       return this.hasMask(RANGE_UB_INC)
-        ? upper >= point
-        : upper.compareTo(point) > 0
+        ? this.upper >= point
+        : this.upper.compareTo(point) > 0
     }
 
     // INFINITY
@@ -84,10 +77,10 @@ class Range {
   /**
    * @param {Range} range
    */
-  containsRange (range, transform = x => x) {
+  containsRange (range) {
     return (
-      (!range.hasLowerBound() || this.containsPoint(range.lower, transform)) &&
-      (!range.hasUpperBound() || this.containsPoint(range.upper, transform))
+      (!range.hasLowerBound() || this.containsPoint(range.lower)) &&
+      (!range.hasUpperBound() || this.containsPoint(range.upper))
     )
   }
 }
