@@ -1,14 +1,14 @@
-export const RANGE_EMPTY = 1 << 1
-export const RANGE_LB_INC = 1 << 2
-export const RANGE_UB_INC = 1 << 3
-export const RANGE_LB_INF = (1 << 4)
-export const RANGE_UB_INF = (1 << 5)
+export const RANGE_EMPTY = 2
+export const RANGE_LB_INC = 4
+export const RANGE_UB_INC = 8
+export const RANGE_LB_INF = 16
+export const RANGE_UB_INF = 32
 
 export class Range<T> {
   constructor(lower: T | null, upper: T | null, mask: number);
   lower: T | null;
   upper: T | null;
-  hasMask (flag): boolean;
+  hasMask (flag: number): boolean;
   isEmpty (): boolean;
   isBounded (): boolean;
   isLowerBoundClosed (): boolean;
