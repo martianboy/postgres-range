@@ -49,6 +49,34 @@ test('parse: integer', function (t) {
   t.end()
 })
 
+test('parse: strings', function (t) {
+  const check = (a, b) => t.deepEqual(parse(a), b, a)
+
+  check('(,"")', new Range(null, '', RANGE_LB_INF))
+  check('("",)', new Range('', null, RANGE_UB_INF))
+  check('(A,Z)', new Range('A', 'Z', 0))
+  check('("A","Z")', new Range('A', 'Z', 0))
+  check('("""A""","""Z""")', new Range('"A"', '"Z"', 0))
+  check('("\\"A\\"","\\"Z\\"")', new Range('"A"', '"Z"', 0))
+  check('("\\(A\\)","\\(Z\\)")', new Range('(A)', '(Z)', 0))
+  check('("\\[A\\]","\\[Z\\]")', new Range('[A]', '[Z]', 0))
+
+  t.end()
+})
+
+test('serialize: strings', function (t) {
+  const check = (a, b) => t.deepEqual(a, serialize(b), a)
+
+  check('(,"")', new Range(null, '', RANGE_LB_INF))
+  check('("",)', new Range('', null, RANGE_UB_INF))
+  check('("""A""","""Z""")', new Range('"A"', '"Z"', 0))
+  check('("\\\\A\\\\","\\\\Z\\\\")', new Range('\\A\\', '\\Z\\', 0))
+  check('("(A)","(Z)")', new Range('(A)', '(Z)', 0))
+  check('("[A]","[Z]")', new Range('[A]', '[Z]', 0))
+
+  t.end()
+})
+
 test('roundtrip', function (t) {
   const trip = raw => t.is(serialize(parse(raw)), raw, raw)
 
