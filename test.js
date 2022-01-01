@@ -19,6 +19,7 @@ test('parse', function (t) {
   t.deepEqual(string('empty'), new Range(null, null, RANGE_EMPTY), 'empty')
 
   t.deepEqual(string('(,)'), new Range(null, null, RANGE_LB_INF | RANGE_UB_INF), '(,)')
+  t.deepEqual(string('(-infinity,infinity)'), new Range(null, null, RANGE_LB_INF | RANGE_UB_INF), '(-infinity,infinity)')
 
   t.deepEqual(string('(0,)'), new Range('0', null, RANGE_UB_INF), '(0,)')
   t.deepEqual(string('(0,10)'), new Range('0', '10', 0), '(0,10)')

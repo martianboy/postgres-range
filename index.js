@@ -211,7 +211,7 @@ function parseBound (input, ptr) {
       value += input.slice(pos, ptr)
     }
 
-    if (value === INFINITY) {
+    if (value.endsWith(INFINITY)) {
       return {
         infinite: true,
         value: null,
