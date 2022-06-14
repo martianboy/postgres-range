@@ -91,3 +91,12 @@ test('roundtrip', function (t) {
 
   t.end()
 })
+
+test('Range', function (t) {
+  t.ok(parse('[1, 10)', x => parseInt(x)).containsPoint(5), '[1, 10).containsPoint(5) is true')
+  t.notOk(parse('[1, 10)', x => parseInt(x)).containsPoint(-5), '[1, 10).containsPoint(-5) is false')
+  t.ok(parse('[1, 10)', x => parseInt(x)).containsRange(parse('[1, 3]', x => parseInt(x))), '[1, 10).containsRange(\'[1, 3]\') is true')
+  t.notOk(parse('[1, 10)', x => parseInt(x)).containsRange(parse('[-1, 3]', x => parseInt(x))), '[1, 10).containsRange(\'[-1, 3]\') is false')
+
+  t.end()
+})

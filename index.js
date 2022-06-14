@@ -55,21 +55,21 @@ class Range {
 
     if (l && u) {
       const inLower = this.hasMask(RANGE_LB_INC)
-        ? this.lower.compareTo(point) <= 0
-        : this.lower.compareTo(point) < 0
+        ? this.lower <= point
+        : this.lower < point
       const inUpper = this.hasMask(RANGE_UB_INC)
-        ? this.upper.compareTo(point) >= 0
-        : this.upper.compareTo(point) > 0
+        ? this.upper >= point
+        : this.upper > point
 
       return inLower && inUpper
     } else if (l) {
       return this.hasMask(RANGE_LB_INC)
-        ? this.lower.compareTo(point) <= 0
-        : this.lower.compareTo(point) < 0
+        ? this.lower <= point
+        : this.lower < point
     } else if (u) {
       return this.hasMask(RANGE_UB_INC)
         ? this.upper >= point
-        : this.upper.compareTo(point) > 0
+        : this.upper > point
     }
 
     // INFINITY
