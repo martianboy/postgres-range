@@ -27,6 +27,11 @@ rng.hasLowerBound()
 rng.hasUpperBound()
 // => true
 
+rng.containsPoint(4)
+// => true
+rng.containsRange(range.parse('[1,2]', x => parseInt(x)))
+// => true
+
 range.parse('empty').isEmpty()
 // => true
 
