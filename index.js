@@ -247,12 +247,18 @@ function serialize (range, format = x => x) {
 }
 
 /**
- * @param {string} bnd
+ * @param {any} bnd
  */
 function serializeBound (bnd) {
   let needsQuotes = false
   let pos = 0
   let value = ''
+
+  if (typeof bnd !== 'string') {
+    if (typeof bnd === 'number' || typeof bnd === 'bigint') return bnd.toString()
+
+    bnd = String(bnd)
+  }
 
   if (bnd === null || bnd.length === 0) {
     return '""'
