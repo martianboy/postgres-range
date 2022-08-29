@@ -78,6 +78,16 @@ test('serialize: strings', function (t) {
   t.end()
 })
 
+test('serialize: numbers', function (t) {
+  const check = (a, b) => t.deepEqual(a, serialize(b), a)
+
+  check('(,0)', new Range(null, 0, RANGE_LB_INF))
+  check('(0,)', new Range(0, null, RANGE_UB_INF))
+  check('(1.1,9.9)', new Range(1.1, 9.9, 0))
+
+  t.end()
+})
+
 test('roundtrip', function (t) {
   const trip = raw => t.is(serialize(parse(raw)), raw, raw)
 
