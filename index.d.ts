@@ -18,6 +18,8 @@ export class Range<T> {
 
   containsPoint (point: T): boolean;
   containsRange (range: Range<T>): boolean;
+
+  toPostgres (prepareValue: (value: any) => string): string;
 }
 
 export function parse(input: string): Range<string>;
