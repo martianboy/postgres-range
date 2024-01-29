@@ -87,7 +87,7 @@ class Range {
   }
 
   toPostgres (prepareValue) {
-    return serialize(this, prepareValue);
+    return serialize(this, prepareValue)
   }
 }
 
