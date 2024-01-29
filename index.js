@@ -85,6 +85,10 @@ class Range {
       (!range.hasUpperBound() || this.containsPoint(range.upper))
     )
   }
+
+  toPostgres (prepareValue) {
+    return serialize(this, prepareValue);
+  }
 }
 
 /**
